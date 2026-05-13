@@ -6,7 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class LeaveService {
 
-  apiUrl = 'http://localhost:3000/api/leave';
+  // apiUrl = 'http://localhost:3000/api/leave';
+   apiUrl = 'https://leave-backend-gamma.vercel.app/api/leave';
 
   constructor(private http: HttpClient) {}
 

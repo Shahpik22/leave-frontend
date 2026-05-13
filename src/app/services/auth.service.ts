@@ -6,27 +6,28 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
-  apiUrl = 'http://localhost:3000/api/auth';
+  // apiUrl = 'http://localhost:3000/api/auth';
+  apiUrl = 'https://leave-backend-gamma.vercel.app/api/auth';
+  
+    constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {}
+register(data: any) {
+  return this.http.post(`${this.apiUrl}/register`, data);
+}
 
-  register(data: any) {
-    return this.http.post(`${this.apiUrl}/register`, data);
-  }
+login(data: any) {
+  return this.http.post(`${this.apiUrl}/login`, data);
+}
 
-  login(data: any) {
-    return this.http.post(`${this.apiUrl}/login`, data);
-  }
+saveUser(user: any) {
+  localStorage.setItem('user', JSON.stringify(user));
+}
 
-   saveUser(user: any) {
-    localStorage.setItem('user', JSON.stringify(user));
-  }
+getUser() {
+  return JSON.parse(localStorage.getItem('user') || '{}');
+}
 
-   getUser() {
-    return JSON.parse(localStorage.getItem('user') || '{}');
-  }
-
-  logout() {
-    localStorage.removeItem('user');
-  }
+logout() {
+  localStorage.removeItem('user');
+}
 }
