@@ -1,0 +1,60 @@
+<div class="page">
+
+  <div class="card">
+
+    <h2>Apply Leave</h2>
+    <p class="subtitle">Submit your leave request</p>
+
+    <form (ngSubmit)="applyLeave()" #f="ngForm">
+
+      <!-- Leave Type -->
+      <label>Leave Type</label>
+      <select
+        name="leaveType"
+        [(ngModel)]="formData.leaveType"
+        required
+      >
+        <option value="">Select type</option>
+        <option value="Annual">Annual Leave</option>
+        <option value="Medical">Medical Leave</option>
+        <option value="Emergency">Emergency Leave</option>
+      </select>
+
+      <!-- Start Date -->
+      <label>Start Date</label>
+      <input
+        type="date"
+        name="startDate"
+        [(ngModel)]="formData.startDate"
+        required
+      />
+
+      <!-- End Date -->
+      <label>End Date</label>
+      <input
+        type="date"
+        name="endDate"
+        [(ngModel)]="formData.endDate"
+        required
+      />
+
+      <!-- Reason -->
+      <label>Reason</label>
+      <textarea
+        name="reason"
+        rows="4"
+        [(ngModel)]="formData.reason"
+        placeholder="Enter reason..."
+        required
+      ></textarea>
+
+      <!-- Button -->
+      <button type="submit" [disabled]="f.invalid">
+        Submit Request
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

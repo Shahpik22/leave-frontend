@@ -1,0 +1,43 @@
+<div class="bg">
+
+  <div class="card">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="icon">🔐</div>
+      <h2>Welcome Back</h2>
+      <p>Login to your account</p>
+    </div>
+
+    <!-- Form -->
+    <div class="form">
+
+      <div class="input-box">
+        <span>📧</span>
+        <input
+          type="email"
+          placeholder="Email"
+          [(ngModel)]="loginData.email"
+          name="email"
+        />
+      </div>
+
+      <div class="input-box">
+        <span>🔒</span>
+        <input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="loginData.password"
+          name="password"
+        />
+      </div>
+
+      <button (click)="login()" [disabled]="!loginData.email || !loginData.password">
+        Sign In →
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

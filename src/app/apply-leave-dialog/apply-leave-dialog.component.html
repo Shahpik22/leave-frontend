@@ -1,0 +1,55 @@
+<div class="dialog">
+
+  <div class="header">
+    <h2>Apply Leave</h2>
+    <p>Fill in your leave request details</p>
+  </div>
+
+  <form class="form">
+
+    <!-- Leave Type -->
+    <div class="field">
+      <label>Leave Type</label>
+      <select [(ngModel)]="formData.leaveType" name="leaveType">
+        <option value="">Select type</option>
+        <option>Annual</option>
+        <option>Medical</option>
+        <option>Emergency</option>
+      </select>
+    </div>
+
+    <!-- Dates -->
+    <div class="grid-2">
+
+      <div class="field">
+        <label>Start Date</label>
+        <input type="date" [(ngModel)]="formData.startDate" name="startDate" />
+      </div>
+
+      <div class="field">
+        <label>End Date</label>
+        <input type="date" [(ngModel)]="formData.endDate" name="endDate" />
+      </div>
+
+    </div>
+
+    <!-- Reason -->
+    <div class="field">
+      <label>Reason</label>
+      <textarea
+        rows="4"
+        [(ngModel)]="formData.reason"
+        name="reason"
+        placeholder="Describe your reason..."
+      ></textarea>
+    </div>
+
+    <!-- Buttons -->
+    <div class="actions">
+      <button type="button" class="btn-cancel" (click)="close()">Cancel</button>
+      <button type="button" class="btn-submit" (click)="submit()">Submit</button>
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,68 @@
+<div class="calendar-wrapper">
+
+  <div class="calendar-card">
+
+  <!-- <div class="calendar-header">
+    <h1>{{ getMonthName() }} {{ currentYear }}</h1>
+  </div> -->
+
+   <div class="calendar-header">
+      <button (click)="prevMonth()">‹</button>
+
+      <h2>{{ getMonthName() }}</h2>
+
+      <button (click)="nextMonth()">›</button>
+    </div>
+
+  <div class="calendar-grid">
+
+    <div class="day-tile header-tile">Sun</div>
+    <div class="day-tile header-tile">Mon</div>
+    <div class="day-tile header-tile">Tue</div>
+    <div class="day-tile header-tile">Wed</div>
+    <div class="day-tile header-tile">Thu</div>
+    <div class="day-tile header-tile">Fri</div>
+    <div class="day-tile header-tile">Sat</div>
+
+    <ng-container *ngFor="let day of daysInMonth">
+
+      <!-- <div class="day-tile"
+     (click)="selectDate(day)"
+     [ngClass]="getLeaveForDate(day)?.status">
+
+  <div class="date-number">
+    {{ day.getDate() }}
+  </div>
+
+  <div class="leave-info" *ngIf="getLeaveForDate(day)">
+    <b>{{ getLeaveForDate(day).name }}</b><br>
+    {{ getLeaveForDate(day).leaveType }}
+  </div>
+
+</div> -->
+
+<div class="day-tile"
+     (click)="selectDate(day)"
+     [ngClass]="getLeaveForDate(day)?.status">
+
+  <div class="date-number">
+    {{ day.getDate() }}
+  </div>
+
+  <!-- 👇 SHOW BUBBLE ON HOVER -->
+  <div class="tooltip" *ngIf="getLeavesForDate(day).length">
+
+    <div class="leave-chip" *ngFor="let l of getLeavesForDate(day)">
+      👤 {{ l.name }} - {{ l.leaveType }}
+    </div>
+
+  </div>
+
+</div>
+
+    </ng-container>
+
+  </div>
+
+</div>
+</div>

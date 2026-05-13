@@ -1,0 +1,45 @@
+<p>leave-list works!</p>
+<div class="container mt-4">
+
+  <h2>My Leave Applications</h2>
+
+  <table class="table table-bordered table-striped">
+
+    <thead>
+      <tr>
+        <th>Leave Type</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Reason</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let leave of leaves">
+        <td>{{ leave.leaveType }}</td>
+        <td>{{ leave.startDate }}</td>
+        <td>{{ leave.endDate }}</td>
+        <td>{{ leave.reason }}</td>
+        <td>
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-warning': leave.status === 'Pending',
+              'bg-success': leave.status === 'Approved',
+              'bg-danger': leave.status === 'Rejected'
+            }"
+          >
+            {{ leave.status }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+  <div *ngIf="leaves.length === 0" class="alert alert-info">
+    No leave applications found.
+  </div>
+
+</div>
