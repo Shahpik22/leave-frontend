@@ -1,15 +1,30 @@
-.calendar-container {
-  padding: 20px;
-  background: #f5f7fb;
+/* Background */
+.calendar-wrapper {
   min-height: 100vh;
-}
+  padding: 30px;
 
-.header {
- display: flex;
-  justify-content: space-between;
+  display: flex;
+  justify-content: center;
   align-items: center;
 
-  margin-bottom: 15px;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+}
+
+/* Main Glass Card */
+.calendar-card {
+  width: 100%;
+  max-width: 1400px;
+
+  padding: 25px;
+
+  border-radius: 24px;
+
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(14px);
+
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+
+  color: white;
 }
 
 /* Header */
@@ -18,188 +33,227 @@
   justify-content: space-between;
   align-items: center;
 
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
-.calendar-header button {
-  background: rgba(255,255,255,0.25);
-  border: none;
-  color: white;
+.calendar-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+}
 
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+/* Nav Button */
+.nav-btn {
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.2);
+
+  color: white;
+  font-size: 22px;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-btn:hover {
+  background: rgba(255,255,255,0.3);
+  transform: scale(1.05);
+}
+
+/* Grid */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+
+  gap: 12px;
+}
+
+/* Tile */
+.day-tile {
+  min-height: 120px;
+
+  padding: 10px;
+
+  border-radius: 18px;
+
+  background: rgba(255,255,255,0.12);
+
+  position: relative;
+
+  overflow: visible;
+
+  transition: 0.2s;
 
   cursor: pointer;
 }
 
-.calendar-header h2 {
-  font-weight: 600;
-}
-.header h1 {
-  font-size: 28px;
-  font-weight: 600;
-  color: #333;
-}
-
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-}
-
-.day-tile {
-  background: white;
-  border-radius: 12px;
-  min-height: 110px;
-  padding: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  position: relative;
-  transition: 0.2s;
-}
-
 .day-tile:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  /* transform: translateY(-4px); */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+   z-index: 50;
+  background: rgba(255,255,255,0.18);
 }
 
+/* Header Tile */
 .header-tile {
-  background: #4f46e5;
-  color: white;
+  min-height: auto;
+
   text-align: center;
+
+  font-weight: 700;
+
+  background: transparent;
+
+  cursor: default;
+}
+
+/* Today */
+.today {
+  outline: 2px solid white;
+}
+
+/* Disabled */
+.disabled {
+  /* cursor: not-allowed !important; */
+  border: 2px solid rgba(255, 100, 100, 0.35);
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+/* Date */
+.date-number {
+  font-size: 16px;
   font-weight: bold;
-  min-height: 40px;
+}
+
+/* My leave badge */
+.my-leave {
+  margin-top: 8px;
+
+  display: inline-block;
+
+  padding: 4px 8px;
+
+  border-radius: 8px;
+
+  background: rgba(255, 80, 80, 0.25);
+
+  color: #ffdada;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Leave preview */
+.leave-preview {
+  margin-top: 10px;
+
+  font-size: 12px;
+
+  opacity: 0.8;
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+
+  top: 100%;
+  left: 0;
+
+  margin-top: 10px;
+
+  width: 220px;
+
+  padding: 12px;
+
+  border-radius: 16px;
+
+  background: #1f2937;
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+
+  isolation: isolate;
+
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  will-change: transform;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(10px);
+
+  transition: 0.2s;
+
+  z-index: 99999 !important;
+}
+
+/* Show tooltip */
+.day-tile:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+
+  transform: translateY(0);
+}
+
+/* Leave Chip */
+.leave-chip {
   display: flex;
   align-items: center;
-  justify-content: center;
+
+  gap: 10px;
+
+  padding: 8px;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.08);
+
+  margin-bottom: 8px;
 }
 
-.date-number {
+/* Avatar */
+.avatar {
   font-size: 18px;
-  font-weight: bold;
-  color: #333;
 }
 
-.status {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: transparent;
-}
-
-/* today highlight */
-.day-tile.today {
-  border: 2px solid #4f46e5;
-}
-
-/* approved */
-.APPROVED {
-  background: #dcfce7;
-  border-left: 4px solid #22c55e;
-}
-
-/* pending */
-.PENDING {
-  background: #fef9c3;
-  border-left: 4px solid #eab308;
-}
-
-/* rejected */
-.REJECTED {
-  background: #fee2e2;
-  border-left: 4px solid #ef4444;
-}
-
-/* leave label */
-
-.leave-info {
-  font-size: 11px;
-  margin-top: 8px;
-  color: #444;
-}
-
-.leave-info b {
-  display: block;
-  color: #111;
-}
-
-.day-tile {
-  position: relative;
-}
-
-/* hidden bubble */
-.tooltip {
-  display: none;
-  position: absolute;
-  bottom: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  color: #000;
-  padding: 8px 10px;
-  border-radius: 8px;
-  font-size: 11px;
-  white-space: nowrap;
-  z-index: 100;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* show on hover */
-.day-tile:hover .tooltip {
-  display: block;
-}
-
-/* arrow */
-.tooltip::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 6px;
-  border-style: solid;
-  border-color: #111 transparent transparent transparent;
-}
-
-/* Leave chips (clean + modern) */
-.leaves {
-  margin-top: 5px;
+/* Leave Details */
+.leave-details {
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
 
-.leave-chip {
+/* Name */
+.leave-name {
   font-size: 13px;
-  padding: 3px 6px;
-
-  border-radius: 8px;
-  /* background: rgba(0,0,0,0.25); */
+  font-weight: 600;
 }
 
-/* Glass card */
-.calendar-card {
-  width: 95%;
-  max-width: 1200px;
-  padding: 20px;
+/* Type */
+.leave-type {
+  font-size: 11px;
+  opacity: 0.7;
+}
 
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
+.lock-icon {
+  position: absolute;
 
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  top: 10px;
+  right: 10px;
 
+  font-size: 14px;
+
+  opacity: 0.8;
+}
+
+.date-number,
+.my-leave,
+.leave-preview {
   color: white;
-}
-
-.calendar-wrapper {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: linear-gradient(135deg, #4f46e5, #3b82f6);
 }

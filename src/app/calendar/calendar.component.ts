@@ -145,4 +145,32 @@ export class CalendarComponent {
 
     return `${year}-${month}-${day}`;
   }
+
+    isUserAlreadyOnLeave(day: Date): boolean {
+
+    const selectedDate = this.formatDate(day);
+
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    return this.leaves.some((leave: any) => {
+
+      const isSameUser =
+        leave.name?.toLowerCase() === user.name?.toLowerCase();
+
+      const isDateInRange =
+        selectedDate >= leave.startDate &&
+        selectedDate <= leave.endDate;
+
+      return isSameUser && isDateInRange;
+    });
+  }
+
+  isToday(day: Date): boolean {
+
+    return (
+      day.getDate() === this.today.getDate() &&
+      day.getMonth() === this.today.getMonth() &&
+      day.getFullYear() === this.today.getFullYear()
+    );
+  }
 }
