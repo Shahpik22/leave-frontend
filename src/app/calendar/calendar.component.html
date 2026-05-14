@@ -32,33 +32,53 @@
       <div class="day-tile header-tile">Sat</div>
 
       <!-- Days -->
-      <ng-container *ngFor="let day of daysInMonth">
+      <ng-container *ngFor="let day of days">
 
-        <div class="day-tile" (click)="!isUserAlreadyOnLeave(day) && selectDate(day)" [class.today]="isToday(day)"
-          [class.disabled]="isUserAlreadyOnLeave(day)">
+        <!-- EMPTY CELL -->
+        <div class="empty-tile" *ngIf="!day"></div>
+
+        <!-- REAL TILE -->
+        <div
+          class="day-tile"
+          *ngIf="day"
+
+          (click)="!isWeekend(day) && !isUserAlreadyOnLeave(day) && selectDate(day)"
+
+          [class.today]="isToday(day)"
+          [class.disabled]="isUserAlreadyOnLeave(day)"
+          [class.weekend]="isWeekend(day)"
+        >
 
           <!-- Date -->
           <div class="date-number">
             {{ day.getDate() }}
           </div>
 
+          <!-- Weekend Label -->
+          <!-- <div class="weekend-label" *ngIf="isWeekend(day)">
+            Weekend
+          </div> -->
+
           <!-- Current User Leave -->
           <div class="my-leave" *ngIf="isUserAlreadyOnLeave(day)">
             Your Leave
           </div>
 
-          <!-- Show small preview -->
+          <!-- Leave Preview -->
           <div class="leave-preview" *ngIf="getLeavesForDate(day).length">
             {{ getLeavesForDate(day).length }} leave(s)
           </div>
 
-          <!-- Hover Tooltip -->
+          <!-- Tooltip -->
           <div class="tooltip" *ngIf="getLeavesForDate(day).length">
 
-            <div class="leave-chip" *ngFor="let l of getLeavesForDate(day)">
+            <div class="leave-chip"
+                 *ngFor="let l of getLeavesForDate(day)">
+
               <span class="avatar">👤</span>
 
               <div class="leave-details">
+
                 <div class="leave-name">
                   {{ l.name }}
                 </div>
@@ -66,12 +86,16 @@
                 <div class="leave-type">
                   {{ l.leaveType }}
                 </div>
+
               </div>
 
             </div>
 
           </div>
-          <div class="lock-icon" *ngIf="isUserAlreadyOnLeave(day)">
+
+          <!-- Lock -->
+          <div class="lock-icon"
+               *ngIf="isUserAlreadyOnLeave(day)">
             🔒
           </div>
 

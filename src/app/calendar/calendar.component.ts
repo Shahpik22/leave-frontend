@@ -16,6 +16,7 @@ export class CalendarComponent {
 
   today = new Date();
 
+  days: any[] = [];
   currentMonth = this.today.getMonth();
   currentYear = this.today.getFullYear();
   leaves: any[] = [];
@@ -49,17 +50,35 @@ export class CalendarComponent {
 
   generateCalendar(month: number, year: number) {
 
-    this.currentMonth = month;
-    this.currentYear = year;
+    this.days = [];
 
-    this.daysInMonth = [];
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
 
-    const date = new Date(year, month, 1);
+    const startingDay = firstDay.getDay(); // 0 = Sunday
+    const totalDays = lastDay.getDate();
 
-    while (date.getMonth() === month) {
-      this.daysInMonth.push(new Date(date));
-      date.setDate(date.getDate() + 1);
+    // EMPTY CELLS BEFORE MONTH START
+    for (let i = 0; i < startingDay; i++) {
+      this.days.push(null);
     }
+
+    // ACTUAL DAYS
+    for (let day = 1; day <= totalDays; day++) {
+      this.days.push(new Date(year, month, day));
+    }
+
+    // this.currentMonth = month;
+    // this.currentYear = year;
+
+    // this.daysInMonth = [];
+
+    // const date = new Date(year, month, 1);
+
+    // while (date.getMonth() === month) {
+    //   this.daysInMonth.push(new Date(date));
+    //   date.setDate(date.getDate() + 1);
+    // }
   }
 
   getMonthName() {
@@ -146,7 +165,7 @@ export class CalendarComponent {
     return `${year}-${month}-${day}`;
   }
 
-    isUserAlreadyOnLeave(day: Date): boolean {
+  isUserAlreadyOnLeave(day: Date): boolean {
 
     const selectedDate = this.formatDate(day);
 
@@ -173,4 +192,11 @@ export class CalendarComponent {
       day.getFullYear() === this.today.getFullYear()
     );
   }
+
+  isWeekend(day: Date): boolean {
+
+  const d = day.getDay();
+
+  return d === 0 || d === 6;
+}
 }
