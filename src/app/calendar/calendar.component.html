@@ -9,7 +9,7 @@
         ‹
       </button>
 
-      <h2>
+      <h2 (click)="goToCurrentMonth()"  class="month-title">
         {{ getMonthName() }} {{ currentYear }}
       </h2>
 
@@ -38,16 +38,8 @@
         <div class="empty-tile" *ngIf="!day"></div>
 
         <!-- REAL TILE -->
-        <div
-          class="day-tile"
-          *ngIf="day"
-
-          (click)="!isWeekend(day) && !isUserAlreadyOnLeave(day) && selectDate(day)"
-
-          [class.today]="isToday(day)"
-          [class.disabled]="isUserAlreadyOnLeave(day)"
-          [class.weekend]="isWeekend(day)"
-        >
+        <div class="day-tile" *ngIf="day" (click)="!isWeekend(day) && !isUserAlreadyOnLeave(day) && selectDate(day)"
+          [class.today]="isToday(day)" [class.disabled]="isUserAlreadyOnLeave(day)" [class.weekend]="isWeekend(day)">
 
           <!-- Date -->
           <div class="date-number">
@@ -72,8 +64,7 @@
           <!-- Tooltip -->
           <div class="tooltip" *ngIf="getLeavesForDate(day).length">
 
-            <div class="leave-chip"
-                 *ngFor="let l of getLeavesForDate(day)">
+            <div class="leave-chip" *ngFor="let l of getLeavesForDate(day)">
 
               <span class="avatar">👤</span>
 
@@ -94,17 +85,13 @@
           </div>
 
           <!-- Lock -->
-          <div class="lock-icon"
-               *ngIf="isUserAlreadyOnLeave(day)">
+          <div class="lock-icon" *ngIf="isUserAlreadyOnLeave(day)">
             🔒
           </div>
 
         </div>
 
       </ng-container>
-
     </div>
-
   </div>
-
 </div>

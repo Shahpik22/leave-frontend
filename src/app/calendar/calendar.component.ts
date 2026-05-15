@@ -195,8 +195,17 @@ export class CalendarComponent {
 
   isWeekend(day: Date): boolean {
 
-  const d = day.getDay();
+    const d = day.getDay();
 
-  return d === 0 || d === 6;
-}
+    return d === 0 || d === 6;
+  }
+
+  goToCurrentMonth() {
+    const today = new Date();
+
+    this.currentMonth = today.getMonth();
+    this.currentYear = today.getFullYear();
+
+    this.generateCalendar(this.currentMonth, this.currentYear);
+  }
 }

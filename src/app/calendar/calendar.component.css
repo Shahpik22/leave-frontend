@@ -1,6 +1,6 @@
 /* Background */
 .calendar-wrapper {
-  /* min-height: 100vh; */
+  min-height: 100vh;
   /* padding: 30px; */
   padding: 16px;
 
@@ -81,7 +81,7 @@
 
 /* Tile */
 .day-tile {
-  min-height: 120px;
+  min-height: 100px;
 
   padding: 10px;
 
@@ -267,7 +267,7 @@
 }
 
 .empty-tile {
-  min-height: 110px;
+  min-height: 100px;
 }
 
 /* WEEKEND */
@@ -290,4 +290,14 @@
   right: 8px;
   font-size: 10px;
   color: #ffffff;
+}
+
+.month-title {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.month-title:hover {
+  opacity: 0.8;
+  transform: scale(1.02);
 }
