@@ -81,8 +81,9 @@
 
 /* Tile */
 .day-tile {
-  min-height: 90px;
+  /* height: 90px; */
 
+  height: 8vh;
   padding: 10px;
 
   border-radius: 18px;
@@ -267,7 +268,8 @@
 }
 
 .empty-tile {
-  min-height: 90px;
+  /* height: 90px; */
+  height: 8vh;
 }
 
 /* WEEKEND */
